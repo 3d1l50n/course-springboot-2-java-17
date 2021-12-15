@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.teradynebrasil.course.entities.Order;
 import br.com.teradynebrasil.course.entities.User;
+import br.com.teradynebrasil.course.entities.enums.OrderStatus;
 import br.com.teradynebrasil.course.repositories.OrderRepository;
 import br.com.teradynebrasil.course.repositories.UserRepository;
 
@@ -38,14 +39,14 @@ public class TestConfig implements CommandLineRunner {
 		userRepository.saveAll(Arrays.asList(u1,u2,u3,u4));
 		
 		
-		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-		Order o2 = new Order(null, Instant.parse("2019-07-21T17:00:07Z"), u2);
-		Order o3 = new Order(null, Instant.parse("2019-05-27T13:12:06Z"), u4);
-		Order o4 = new Order(null, Instant.parse("2019-03-23T11:07:05Z"), u3);
-		Order o5 = new Order(null, Instant.parse("2019-08-18T21:43:00Z"), u1);
-		Order o6 = new Order(null, Instant.parse("2019-11-05T22:32:08Z"), u2);
-		Order o7 = new Order(null, Instant.parse("2019-10-12T09:27:02Z"), u3);
-		Order o8 = new Order(null, Instant.parse("2019-03-29T07:15:06Z"), u4);
+		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+		Order o2 = new Order(null, Instant.parse("2019-07-21T17:00:07Z"), OrderStatus.DELIVERED, u2);
+		Order o3 = new Order(null, Instant.parse("2019-05-27T13:12:06Z"), OrderStatus.SHIPPED, u4);
+		Order o4 = new Order(null, Instant.parse("2019-03-23T11:07:05Z"), OrderStatus.WAYTING_PAYMENT, u3);
+		Order o5 = new Order(null, Instant.parse("2019-08-18T21:43:00Z"), OrderStatus.CANCELED, u1);
+		Order o6 = new Order(null, Instant.parse("2019-11-05T22:32:08Z"), OrderStatus.SHIPPED, u2);
+		Order o7 = new Order(null, Instant.parse("2019-10-12T09:27:02Z"), OrderStatus.DELIVERED, u3);
+		Order o8 = new Order(null, Instant.parse("2019-03-29T07:15:06Z"), OrderStatus.PAID, u4);
 		
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3,o4,o5,o6,o7,o8));
 		
