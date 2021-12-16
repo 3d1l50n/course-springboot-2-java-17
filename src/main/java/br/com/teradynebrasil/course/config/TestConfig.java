@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import br.com.teradynebrasil.course.entities.Category;
 import br.com.teradynebrasil.course.entities.Order;
 import br.com.teradynebrasil.course.entities.User;
 import br.com.teradynebrasil.course.entities.enums.OrderStatus;
+import br.com.teradynebrasil.course.repositories.CategoryRepository;
 import br.com.teradynebrasil.course.repositories.OrderRepository;
 import br.com.teradynebrasil.course.repositories.UserRepository;
 
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	
 	
@@ -49,5 +54,15 @@ public class TestConfig implements CommandLineRunner {
 		Order o8 = new Order(null, Instant.parse("2019-03-29T07:15:06Z"), OrderStatus.PAID, u4);
 		
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3,o4,o5,o6,o7,o8));
+		
+		
+		Category cat1 = new Category(null, "Eletronics");
+		Category cat2 = new Category(null, "Books");
+		Category cat3 = new Category(null, "Computers");
+		
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+		
+		
+		
 		
 	}}
