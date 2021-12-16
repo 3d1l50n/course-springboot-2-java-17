@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.teradynebrasil.course.entities.Category;
 import br.com.teradynebrasil.course.entities.Order;
+import br.com.teradynebrasil.course.entities.Product;
 import br.com.teradynebrasil.course.entities.User;
 import br.com.teradynebrasil.course.entities.enums.OrderStatus;
 import br.com.teradynebrasil.course.repositories.CategoryRepository;
 import br.com.teradynebrasil.course.repositories.OrderRepository;
+import br.com.teradynebrasil.course.repositories.ProductRepository;
 import br.com.teradynebrasil.course.repositories.UserRepository;
 
 @Configuration
@@ -29,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	@Autowired
+	private ProductRepository productRepository;
+	
 	
 	
 
@@ -36,6 +41,24 @@ public class TestConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		
+		Category cat1 = new Category(null, "Eletronics");
+		Category cat2 = new Category(null, "Books");
+		Category cat3 = new Category(null, "Computers");
+		
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+		
+		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Product p2 = new Product(null, "Smart TV", "NUlla eu impeerdiet purus. Maecenas ante.", 2190.0, "");
+		Product p3 = new Product(null, "Macbook Pro", "Nas eleinfed maximus toror, at mollis.", 1250.0, "");
+		Product p4 = new Product(null, "PC Gamer", "Donnec alied ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(null, "Rails for Dummies", "Cras fringille convallis sem vel faucibus.", 100.99, "");
+		
+		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		
+		
 		User u1 = new User(null, "Maria Brown","maria@gmail.com", "991729239", "125756");
 		User u2 = new User(null, "Robert Blue","robert@gmail.com", "991584539", "123936");
 		User u3 = new User(null, "Beth Bop","beth@gmail.com", "991589252", "123446");
@@ -55,12 +78,7 @@ public class TestConfig implements CommandLineRunner {
 		
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3,o4,o5,o6,o7,o8));
 		
-		
-		Category cat1 = new Category(null, "Eletronics");
-		Category cat2 = new Category(null, "Books");
-		Category cat3 = new Category(null, "Computers");
-		
-		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+	
 		
 		
 		
