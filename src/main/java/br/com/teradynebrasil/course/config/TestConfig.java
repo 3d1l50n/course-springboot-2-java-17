@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.teradynebrasil.course.entities.Category;
 import br.com.teradynebrasil.course.entities.Order;
+import br.com.teradynebrasil.course.entities.OrderItem;
 import br.com.teradynebrasil.course.entities.Product;
 import br.com.teradynebrasil.course.entities.User;
 import br.com.teradynebrasil.course.entities.enums.OrderStatus;
 import br.com.teradynebrasil.course.repositories.CategoryRepository;
+import br.com.teradynebrasil.course.repositories.OrderItemRepository;
 import br.com.teradynebrasil.course.repositories.OrderRepository;
 import br.com.teradynebrasil.course.repositories.ProductRepository;
 import br.com.teradynebrasil.course.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	
 	
@@ -85,6 +90,14 @@ public class TestConfig implements CommandLineRunner {
 		Order o8 = new Order(null, Instant.parse("2019-03-29T07:15:06Z"), OrderStatus.PAID, u4);
 		
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3,o4,o5,o6,o7,o8));
+		
+		
+		OrderItem oi1 = new OrderItem(o1,p1,2,p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1,p3,1,p4.getPrice());
+		OrderItem oi3 = new OrderItem(o2,p3,2,p1.getPrice());
+		OrderItem oi4 = new OrderItem(o3,p3,2,p5.getPrice());
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 		
 	
 		
